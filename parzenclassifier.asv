@@ -1,0 +1,35 @@
+clc;
+close all;
+%parzen window
+
+%[fileID, errmsg] = fopen(filename);
+%disp(errmsg)
+nc = 3; % number of classes
+[traindata] = textread('iris_training.txt');
+[testdata] = textread('iris_test.txt');
+c = size(traindata,1)/nc;%number samples in each class
+nf = size(traindata,2);% number of features + class column
+d=nf-1; %dimension
+h = 3; %window size
+p_phi_x =zeros(1,nc);
+p = zeros(51,nc);
+alph = 1/(2*pi*h^d);
+for k =1 :size(testdata,1)
+    for j = 1:nc
+        for i =(j-1)*c +1 :j*c
+            u = (testdata(k,2:end)- traindata(i,2:end))/h;
+            u = norm(u);
+            p_phi_x(j) =p_phi_x(j) +  1/alph*exp(-u^2/2);
+        end
+    end
+    [M,I] = max(p_phi_x);
+    if I ~= testdata(j,1)
+        num_error = num_error + 1;
+    end
+    p_phi_x =zeros(nc,1);
+    %here reset p
+end
+% find the pdf for each class and select the x that 
+%gives the maximum px
+%select max px of the classes
+

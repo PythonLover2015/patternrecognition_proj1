@@ -1,0 +1,13 @@
+function [ data ] = normalize(x,d)
+%UNTITLED2 Summary of this function goes here
+%   Detailed explanation goes here
+%Normalization
+mu = mean(x);
+for i=1:d
+  x(:,i+1) = x(:,i+1) - mu(i);
+  varx = var(x(:,i+1));
+  x(:,i+1) =  x(:,i+1)./varx;
+end
+data = x;
+end
+

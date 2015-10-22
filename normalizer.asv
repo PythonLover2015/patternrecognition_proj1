@@ -1,0 +1,14 @@
+function [x] = normalizer(x,d)
+%UNTITLED2 Summary of this function goes here
+%   Detailed explanation goes here
+%Normalization
+mur = mean(x)
+for i=1:d
+  y = x(:,i+1) - mur(i+1);
+  varx = var(y);
+  for j = 1:size(y,1)
+  x(j,i+1) =  y(j,1)/varx;
+  end
+end
+end
+

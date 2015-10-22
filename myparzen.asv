@@ -1,0 +1,6 @@
+function [p_phi_x] = myparzen(h,alph,testdata, traindata )
+%return parzenWindow weight for x
+%   Detailed explanation goes here
+       
+end
+
